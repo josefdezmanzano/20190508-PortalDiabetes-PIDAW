@@ -39,7 +39,7 @@
             <a class="nav-link js-scroll-trigger" href="#about">Recomendaciones</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#projects">Foro</a>
+            <a class="nav-link js-scroll-trigger" href="{{ route('chatter.home') }}">Foro</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#signup">Contacto</a>
@@ -165,7 +165,7 @@
         <div class="col-md-10 col-lg-8 mx-auto text-center">
 
           <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-          <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+          <h2 class="text-white mb-5">Subscribete para estar a la ultima!</h2>
 
           <form class="form-inline d-flex">
             <input type="email" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" placeholder="Enter email address...">
@@ -186,10 +186,10 @@
         <div class="col-md-4 mb-3 mb-md-0">
           <div class="card py-4 h-100">
             <div class="card-body text-center">
-              <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">Address</h4>
+              <i class="fas fa-coffee text-primary mb-2"></i>
+             <h4 class="text-uppercase m-0">Telegram</h4> 
               <hr class="my-4">
-              <div class="small text-black-50">4923 Market Street, Orlando FL</div>
+              <div class="small text-black-50">JoseFdez</div>
             </div>
           </div>
         </div>
@@ -201,7 +201,7 @@
               <h4 class="text-uppercase m-0">Email</h4>
               <hr class="my-4">
               <div class="small text-black-50">
-                <a href="#">hello@yourdomain.com</a>
+                <a href="#">josefernandezmanzano96@gmail.com</a>
               </div>
             </div>
           </div>
@@ -211,22 +211,22 @@
           <div class="card py-4 h-100">
             <div class="card-body text-center">
               <i class="fas fa-mobile-alt text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">Phone</h4>
+              <h4 class="text-uppercase m-0">Tlfn Movil</h4>
               <hr class="my-4">
-              <div class="small text-black-50">+1 (555) 902-8832</div>
+              <div class="small text-black-50">+34 652 49 90 52</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="social d-flex justify-content-center">
-        <a href="#" class="mx-2">
+        <a href="https://twitter.com/JoseFdezzz" class="mx-2">
           <i class="fab fa-twitter"></i>
         </a>
         <a href="#" class="mx-2">
           <i class="fab fa-facebook-f"></i>
         </a>
-        <a href="#" class="mx-2">
+        <a href="https://github.com/josefdezmanzano/20190508-PortalDiabetes-PIDAW.git" class="mx-2">
           <i class="fab fa-github"></i>
         </a>
       </div>
@@ -237,7 +237,7 @@
   <!-- Footer -->
   <footer class="bg-black small text-center text-white-50">
     <div class="container">
-      Copyright &copy; Your Website 2019
+      Copyright &copy; Created by José Fernández Manzano 2019
     </div>
   </footer>
 
@@ -250,6 +250,7 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/grayscale.min.js"></script>
+  
 
 </body>
 
