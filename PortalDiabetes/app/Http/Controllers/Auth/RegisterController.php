@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Role;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -52,7 +53,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'diabetic' => ['required', 'string', 'max:2'],//agregado por mi
+           // 'image' => ['required', 'string', 'max:255'],//agregado por mi
         ]);
+            
     }
 
     /**
@@ -63,10 +67,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'diabetic'=> $data['diabetic'],//agregado por mi
+          //  'image'=> $data['image'],//agregado por mi
         ]);
+
+        $user->roles()->attach(Role::where('name', 'user')->first());
+
+        return $user;
     }
 }

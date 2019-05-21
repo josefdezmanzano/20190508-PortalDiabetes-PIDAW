@@ -61,6 +61,17 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="diabetic" class="col-md-4 col-form-label text-md-right">{{ __('Eres diabetico?') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="diabetic" name='diabetic' class="custom-select" id="inputGroupSelect01">
+                                    <option selected value="SI">SI</option>
+                                    <option value="NO">NO</option>
+                                </select>
+
+                            </div>
+                        </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

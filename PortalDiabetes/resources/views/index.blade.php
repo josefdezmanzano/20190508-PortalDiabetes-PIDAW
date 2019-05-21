@@ -36,7 +36,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">Recomendaciones</a>
+            <a class="nav-link js-scroll-trigger" href="{{ route('index') }}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{{ route('recomendaciones.index') }}">Recomendaciones</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{{ route('chatter.home') }}">Foro</a>
@@ -187,7 +190,7 @@
           <div class="card py-4 h-100">
             <div class="card-body text-center">
               <i class="fas fa-coffee text-primary mb-2"></i>
-             <h4 class="text-uppercase m-0">Telegram</h4> 
+              <h4 class="text-uppercase m-0">Telegram</h4>
               <hr class="my-4">
               <div class="small text-black-50">JoseFdez</div>
             </div>
@@ -250,7 +253,7 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/grayscale.min.js"></script>
-  
+
 
 </body>
 

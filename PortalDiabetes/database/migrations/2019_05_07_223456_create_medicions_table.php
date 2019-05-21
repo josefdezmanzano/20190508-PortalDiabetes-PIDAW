@@ -15,6 +15,12 @@ class CreateMedicionsTable extends Migration
     {
         Schema::create('medicions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('glucose');
+            $table->bigInteger('user_id')->unsigned();
+            $table->dateTime('fecha');
+            $table->bigInteger('longActingInsulin');
+            $table->bigInteger('rapidActingInsulin');
+            $table->string('rations');
             $table->timestamps();
         });
     }

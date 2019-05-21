@@ -15,6 +15,7 @@ class RecomendacionController extends Controller
     public function index()
     {
         //
+        return view('recomendaciones.index');
     }
 
     /**

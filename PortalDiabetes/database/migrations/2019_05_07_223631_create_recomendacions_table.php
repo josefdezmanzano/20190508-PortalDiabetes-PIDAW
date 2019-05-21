@@ -15,6 +15,8 @@ class CreateRecomendacionsTable extends Migration
     {
         Schema::create('recomendacions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('descripcion');
+            $table->bigInteger('medicion_id')->unsigned();
             $table->timestamps();
         });
     }
