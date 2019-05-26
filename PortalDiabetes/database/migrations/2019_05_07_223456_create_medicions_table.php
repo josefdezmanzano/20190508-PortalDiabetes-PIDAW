@@ -17,7 +17,7 @@ class CreateMedicionsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('glucose');
             $table->bigInteger('user_id')->unsigned();
-            $table->dateTime('fecha');
+            $table->string('momento');
             $table->bigInteger('longActingInsulin');
             $table->bigInteger('rapidActingInsulin');
             $table->string('rations');

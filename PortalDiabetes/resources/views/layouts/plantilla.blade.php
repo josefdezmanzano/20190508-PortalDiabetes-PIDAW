@@ -39,7 +39,7 @@
             <a class="nav-link js-scroll-trigger" href="{{ route('index') }}">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">Recomendaciones</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url('/forums/category/recomendaciones') }}">Recomendaciones</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{{ route('chatter.home') }}">Foro</a>
@@ -86,12 +86,12 @@
       <div class="mx-auto text-center">
         <h1 class="mx-auto my-0 text-uppercase">Diabetes</h1>
         <h2 class="text-white-50 mx-auto mt-2 mb-5">El mejor medico para esta enfermedad, eres tu.</h2>
-        <a href="#about" class="btn btn-primary js-scroll-trigger">Calculadora</a>
+        <a href="{{ route('mediciones.create') }}" class="btn btn-primary js-scroll-trigger">Calculadora</a>
       </div>
     </div>
   </header>
-
-  <!-- About Section -->
+@yield('content')
+  <!-- About Section 
   <section id="about" class="about-section text-center">
     <div class="container">
       <div class="row">
@@ -105,11 +105,11 @@
     </div>
   </section>
 
-  <!-- Projects Section -->
+   Projects Section 
   <section id="projects" class="projects-section bg-light">
     <div class="container">
 
-      <!-- Featured Project Row -->
+      Featured Project Row 
       <div class="row align-items-center no-gutters mb-4 mb-lg-5">
         <div class="col-xl-8 col-lg-7">
           <img class="img-fluid mb-3 mb-lg-0" src="img/bg-masthead.jpg" alt="">
@@ -122,7 +122,7 @@
         </div>
       </div>
 
-      <!-- Project One Row -->
+       Project One Row 
       <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
         <div class="col-lg-6">
           <img class="img-fluid" src="img/demo-image-01.jpg" alt="">
@@ -140,7 +140,7 @@
         </div>
       </div>
 
-      <!-- Project Two Row -->
+      Project Two Row 
       <div class="row justify-content-center no-gutters">
         <div class="col-lg-6">
           <img class="img-fluid" src="img/demo-image-02.jpg" alt="">
@@ -160,8 +160,7 @@
 
     </div>
   </section>
-
-  <!-- Signup Section -->
+Signup Section -->
   <section id="signup" class="signup-section">
     <div class="container">
       <div class="row">

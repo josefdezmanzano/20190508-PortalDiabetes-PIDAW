@@ -49,7 +49,7 @@
                             <a class="nav-link js-scroll-trigger" href="{{ route('index') }}">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#about">Recomendaciones</a>
+                            <a class="nav-link js-scroll-trigger" href="{{ url('/forums/category/recomendaciones')}}">Recomendaciones</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="{{ route('chatter.home') }}">Foro</a>

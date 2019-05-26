@@ -17,9 +17,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','image','diabetic',//agrego image y diabetic a fillable
+        'name', 'email', 'password','image','diabetic','created_at','update_at',//agrego image y diabetic a fillable
     ];
 
+    //Para los tiempos pero no funca sosio
+    public $timestamps = true;
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -83,5 +85,10 @@ class User extends Authenticatable
         }
 
         return false;
+    }
+
+
+    public function mediciones(){
+        return $this->hasMany('App\Medicion');
     }
 }
