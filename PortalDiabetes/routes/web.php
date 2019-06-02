@@ -27,3 +27,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('tips', function () {
     return view('tips');
 })->name('tips');
+
+Route::get('chart', 'ChartController@index');//para los graficos
+Route::get('chartMediciones', 'ChartController@mediciones');//para los graficos
