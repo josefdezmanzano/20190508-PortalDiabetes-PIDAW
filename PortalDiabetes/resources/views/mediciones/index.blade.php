@@ -12,6 +12,9 @@
       </div>
     </div>
 
+    <center><h1 style="text-align: center;font-family: 'Staatliches', cursive;">Tus mediciones</h1></center>
+
+  <a style=' text-align: right;float: right;' class="btn btn-secondary m-3" href="{{route('chart')}}">Grafico</a>
     <table class="table table-sm">
         <thead>
           <tr>
@@ -22,7 +25,7 @@
             <th scope="col">Insulina Lenta</th>
             <th scope="col">Raciones</th>
             <th scope="col">Fecha de medicion</th>
-            <th scope="col">Fecha de actualizacion</th>
+            <th scope="col">Fecha de ultima modificación</th>
             <th scope="col">Acciones</th>
 
         </tr>

@@ -80,9 +80,11 @@
                                     {{ __('Logout') }}
                                 </a>
 
+
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
+                                <a class="dropdown-item"  href="{{route('user.show', Auth::user()->id)}}">Perfil</a>
                             </div>
                         </li>
                         @endguest

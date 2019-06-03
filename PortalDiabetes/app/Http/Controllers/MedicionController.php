@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use Illuminate\Support\Facades\Session; //Esto es para usar sesiones
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Input;//Para los botones de modificar borrar y actualizar.
+use Illuminate\Support\Facades\Input; //Para los botones de modificar borrar y actualizar.
 
 class MedicionController extends Controller
 {
@@ -210,9 +210,15 @@ class MedicionController extends Controller
      * @param  \App\Medicion  $medicion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Medicion $medicion)
+    public function edit(Medicion $medicion, $id)
     {
         //
+        if (Auth::check()) {
+            $medicion = Medicion::find($id);
+            return view('mediciones.edit', compact('medicion'));
+        } else {
+            return view('auth.login');
+        }
     }
 
     /**
@@ -222,9 +228,28 @@ class MedicionController extends Controller
      * @param  \App\Medicion  $medicion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Medicion $medicion)
+    public function update(Request $request, Medicion $medicion, $id)
     {
         //
+        $request->validate(
+            [
+                'momento' => 'required',
+                'glucose' => 'required',
+                'rations' => 'required',
+                'longActingInsulin' => 'required',
+                'rapidActingInsulin' => 'required'
+            ]
+        );
+        $medicion = Medicion::find($id);
+
+        $medicion->update($request->all());
+        //$request['portada'] = 'img/generico.jpg';
+
+        //$libro->update($request->all());
+        // Libreria::update($request->all());
+        //indicamos con un mensaje si todo esta correcto
+        Session::flash('message', 'Medición actualizada correctamente.');
+        return redirect()->route('mediciones.index'); //volvemos ha inicio
     }
 
     /**
@@ -233,14 +258,14 @@ class MedicionController extends Controller
      * @param  \App\Medicion  $medicion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Medicion $medicion,$id)
+    public function destroy(Medicion $medicion, $id)
     {
         //
         $medicionBorrada = Medicion::find($id);
         $medicionBorrada->delete();
-            //indicamos con un mensaje si todo esta correcto
-            Session::flash('message', 'Medicion borrada correctamente');
-            return redirect()->route('mediciones.index'); //volvemos ha inicio
+        //indicamos con un mensaje si todo esta correcto
+        Session::flash('message', 'Medicion borrada correctamente');
+        return redirect()->route('mediciones.index'); //volvemos ha inicio
 
 
     }

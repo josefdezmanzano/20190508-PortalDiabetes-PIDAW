@@ -68,6 +68,7 @@
                                                      document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
               </a>
+              <a class="dropdown-item"  href="{{route('user.show', Auth::user()->id)}}">Perfil</a>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
@@ -91,7 +92,7 @@
     </div>
   </header>
 @yield('content')
-  <!-- About Section 
+  <!-- About Section
   <section id="about" class="about-section text-center">
     <div class="container">
       <div class="row">
@@ -105,11 +106,11 @@
     </div>
   </section>
 
-   Projects Section 
+   Projects Section
   <section id="projects" class="projects-section bg-light">
     <div class="container">
 
-      Featured Project Row 
+      Featured Project Row
       <div class="row align-items-center no-gutters mb-4 mb-lg-5">
         <div class="col-xl-8 col-lg-7">
           <img class="img-fluid mb-3 mb-lg-0" src="img/bg-masthead.jpg" alt="">
@@ -122,7 +123,7 @@
         </div>
       </div>
 
-       Project One Row 
+       Project One Row
       <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
         <div class="col-lg-6">
           <img class="img-fluid" src="img/demo-image-01.jpg" alt="">
@@ -140,7 +141,7 @@
         </div>
       </div>
 
-      Project Two Row 
+      Project Two Row
       <div class="row justify-content-center no-gutters">
         <div class="col-lg-6">
           <img class="img-fluid" src="img/demo-image-02.jpg" alt="">

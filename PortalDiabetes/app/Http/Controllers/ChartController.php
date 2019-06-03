@@ -37,17 +37,21 @@ class ChartController extends Controller
     {
         if (Auth::check()) {
             $usuario = Auth::user()->id;
-            $mediciones = Medicion::where(DB::raw("user_id"), $usuario)
-                ->get();
+            $mediciones = DB::table('medicions')->select('glucose')->where('user_id',$usuario)->get();
 
-            $chart = Charts::database($mediciones, 'area', 'highcharts')
-                ->title("Grafico de mediciones")
-                ->elementLabel("Mediciones")
-                ->dimensions(1000, 500)
-                ->responsive(true)
-                ->groupBy('glucose');
+            $array=collect($mediciones)->toArray();
 
-            return view('chartMediciones', compact('chart'));
+            foreach ($mediciones['mediciones'] as $key => $value) {
+                $mediciones['mediciones'][$key] = (object) $value;
+            }
+
+            $chart = Charts::multi('areaspline', 'highcharts')
+            ->title('My nice chart')
+            ->colors(['#ff0000', '#ffffff'])
+            ->dataset('John', [3, 4, 3, 5, 4, 10, 12])
+            ->dataset('Jane',  [1, 3, 4, 3, 3, 5, 4]);
+
+            return view('chartMediciones', compact('mediciones'));
         } else {
             return view('auth.login');
         }

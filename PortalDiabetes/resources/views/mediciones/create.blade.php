@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.app')
 
 @section('content')
 
@@ -8,7 +8,7 @@
       <div class="col-lg-8 mx-auto">
         <p class="h1">Calculadora</p>
         <p>Recordamos que los niveles correctos de glucosa son antes de las comidas entre 85(mmg/dl) y 130(mmg/dl), 2H despues de las comidas entre 100(mmg/dl) y 180(mmg/dl), y la nocturna entre 90(mmg/dl) y 110(mmg/dl). </p>
-        <form name="f1" action="{{route('medicion.store')}}" method="POST">
+        <form name="f1" action="{{route('mediciones.store')}}" method="POST">
           <!-- CONTROLAMOS LOS ERRORES DEL VALIDATE STORE -->
           @csrf
           @if($errors->any)

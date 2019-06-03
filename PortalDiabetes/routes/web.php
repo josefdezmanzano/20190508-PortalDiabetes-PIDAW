@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 Route::resource('mediciones','MedicionController');//esto lo ponemos nosotros para que funcionen las vistas
 Route::resource('recomendaciones','RecomendacionController');//esto lo ponemos nosotros para que funcionen las vistas
+Route::resource('user','UserController');//esto lo ponemos nosotros para que funcionen las vistas
 
 Auth::routes();
 
@@ -28,5 +29,5 @@ Route::get('tips', function () {
     return view('tips');
 })->name('tips');
 
-Route::get('chart', 'ChartController@index');//para los graficos
+Route::get('chart', 'ChartController@index')->name('chart');//para los graficos
 Route::get('chartMediciones', 'ChartController@mediciones');//para los graficos
