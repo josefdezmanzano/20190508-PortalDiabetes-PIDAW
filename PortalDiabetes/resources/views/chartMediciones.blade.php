@@ -8,15 +8,12 @@
                 <div class="panel-heading"></div>
 
                 <div class="panel-body">
-
-                <p>{{ var_dump($mediciones) }}</p>
-
-
+                    {!! $chart->html() !!}
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+{!! Charts::scripts() !!}
+{!! $chart->script() !!}
 @endsection
-

@@ -30,7 +30,7 @@ Route::get('tips', function () {
 })->name('tips');
 
 Route::get('chart', 'ChartController@index')->name('chart');//para los graficos
-Route::get('chartMediciones', 'ChartController@mediciones');//para los graficos
+Route::get('chartMediciones', 'ChartController@mediciones')->name('chartMediciones');//para los graficos
 
 
 //chatter routes

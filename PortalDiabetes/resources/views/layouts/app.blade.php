@@ -69,7 +69,9 @@
                         </li>
                         @endif
                         @else
+                        <img style="border-radius: 50px 50px; margin:1%;" src={{asset(Auth::user()->image)}} height="36" width="36">
                         <li class="nav-item dropdown">
+
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>

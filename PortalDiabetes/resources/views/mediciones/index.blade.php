@@ -14,7 +14,7 @@
 
     <center><h1 style="text-align: center;font-family: 'Staatliches', cursive;">Tus mediciones</h1></center>
 
-  <a style=' text-align: right;float: right;' class="btn btn-secondary m-3" href="{{route('chart')}}">Grafico</a>
+  <a style=' text-align: right;float: right;' class="btn btn-secondary m-3" href="{{route('chartMediciones')}}">Grafico</a>
     <table class="table table-sm">
         <thead>
           <tr>

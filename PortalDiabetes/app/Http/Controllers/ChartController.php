@@ -37,21 +37,46 @@ class ChartController extends Controller
     {
         if (Auth::check()) {
             $usuario = Auth::user()->id;
-            $mediciones = DB::table('medicions')->select('glucose')->where('user_id',$usuario)->get();
+            $mediciones = DB::table('medicions')->select('id', 'glucose', 'created_at')->where('user_id', $usuario)->get();
 
-            $array=collect($mediciones)->toArray();
+            $mapped = $mediciones->map(function ($mediciones) {
+                return $mediciones->glucose;
+            });
+            $mapped2 = $mediciones->map(function ($mediciones) {
+                return $mediciones->created_at;
+            });
 
-            foreach ($mediciones['mediciones'] as $key => $value) {
-                $mediciones['mediciones'][$key] = (object) $value;
+            $fechasFinal=[];
+            foreach ($mapped2 as $key => $value) {
+
+                array_push($fechasFinal,$value);
             }
 
-            $chart = Charts::multi('areaspline', 'highcharts')
-            ->title('My nice chart')
-            ->colors(['#ff0000', '#ffffff'])
-            ->dataset('John', [3, 4, 3, 5, 4, 10, 12])
-            ->dataset('Jane',  [1, 3, 4, 3, 3, 5, 4]);
+            $final=[];
+            foreach ($mapped as $key => $value) {
 
-            return view('chartMediciones', compact('mediciones'));
+                array_push($final,$value);
+            }
+            //$final=substr_replace($final, '', strlen($final)-1);
+
+           // print_r($final);
+           // print_r($fechasFinal);
+
+//die();
+            //dd($mapped);
+            //dd($mapped2);
+            $chart = Charts::multi('areaspline', 'highcharts')
+                ->title("Mediciones")
+                ->elementLabel("Glucosa")
+                ->colors(['#0cbcfe', '#ffffff'])
+                ->dimensions(500, 500)
+                ->responsive(true)
+                ->labels($fechasFinal)
+                ->dataset('Mediciones', $final);
+
+            //$chart->labels(['2 days ago', 'Yesterday', 'Today']);
+            //$chart->dataset('My dataset', [$users_2_days_ago, $yesterday_users, $glucose]);
+            return view('chartMediciones', compact('chart'));
         } else {
             return view('auth.login');
         }
