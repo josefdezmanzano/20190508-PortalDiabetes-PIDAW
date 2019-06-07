@@ -55,7 +55,7 @@
                             <a class="nav-link js-scroll-trigger" href="{{ route('chatter.home') }}">Foro</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#signup">Contacto</a>
+                            <a class="nav-link js-scroll-trigger" href="http://sweetdeveloping.sytes.net#signup">Contacto</a>
                         </li>
 
                         <!-- Authentication Links -->
@@ -69,6 +69,9 @@
                         </li>
                         @endif
                         @else
+                        <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger" href="{{ route('mediciones.create') }}">Calculadora</a>
+                        </li>
                         <img style="border-radius: 50px 50px; margin:1%;" src={{asset(Auth::user()->image)}} height="36" width="36">
                         <li class="nav-item dropdown">
 
@@ -87,6 +90,7 @@
                                     @csrf
                                 </form>
                                 <a class="dropdown-item"  href="{{route('user.show', Auth::user()->id)}}">Perfil</a>
+                                <a class="dropdown-item"  href="{{route('mediciones.index', Auth::user()->id)}}">Mediciones</a>
                             </div>
                         </li>
                         @endguest

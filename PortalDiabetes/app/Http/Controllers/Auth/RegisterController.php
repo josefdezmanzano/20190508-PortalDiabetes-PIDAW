@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'diabetic' => ['required', 'string', 'max:2'],//agregado por mi
            // 'image' => ['required', 'string', 'max:255'],//agregado por mi
         ]);
-            
+
     }
 
     /**

@@ -55,8 +55,8 @@
           </div>
           </div>
             <div class="form-group">
-                  <input type="submit"  name="btn_env" class="btn btn-success" id="exampleFormControlFile1">
-            <a href="{{route('user.show',$user->id)}}" class="btn btn-info">Volver</a>
+                  <input type="submit"  name="btn_env" class="btn btn-success" id="exampleFormControlFile1" value="Actualizar">
+                  <a href="{{route('user.show',$user->id)}}" class="btn btn-info">Volver</a>
             </div>
                     @csrf
                 </form>

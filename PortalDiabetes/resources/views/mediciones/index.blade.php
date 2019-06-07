@@ -60,7 +60,7 @@
         {{ $mediciones->links() }}
         </tbody>
       </table>
-
+      <a href="{{url()->previous()}}" class="btn btn-info" style="float:left;">Volver</a>
 
 
   </div>

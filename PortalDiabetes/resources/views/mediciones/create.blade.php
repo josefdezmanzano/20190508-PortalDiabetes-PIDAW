@@ -61,6 +61,7 @@
           <div class="form-group">
 
             <input type="submit" name="btn_env" class="btn btn-success" id="exampleFormControlFile1" value="Calcular">
+            <a href="{{url()->previous()}}" class="btn btn-info">Volver</a>
           </div>
 
         </form>

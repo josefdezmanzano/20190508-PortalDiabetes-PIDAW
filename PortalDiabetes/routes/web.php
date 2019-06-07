@@ -19,6 +19,8 @@ Route::get('/', function () {
 Route::resource('mediciones','MedicionController');//esto lo ponemos nosotros para que funcionen las vistas
 Route::resource('recomendaciones','RecomendacionController');//esto lo ponemos nosotros para que funcionen las vistas
 Route::resource('user','UserController');//esto lo ponemos nosotros para que funcionen las vistas
+Route::resource('category','ChatterCategoryController');//esto lo ponemos nosotros para que funcionen las vistas
+Route::resource('discussion','ChatterDiscussionController');//esto lo ponemos nosotros para que funcionen las vistas
 
 Auth::routes();
 

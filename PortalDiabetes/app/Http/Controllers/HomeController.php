@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,9 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        //$request->user()->authorizeRoles(['user', 'admin']); //esto es para permitir o no a un usuario entrar a una vista 
+       // print_r(Auth::user()->hasRole('admin'));
+        //die();
+        $request->user()->authorizeRoles(['user', 'admin']); //esto es para permitir o no a un usuario entrar a una vista
 
         return view('home');
     }

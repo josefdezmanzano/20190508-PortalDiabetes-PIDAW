@@ -58,7 +58,11 @@
           </li>
           @endif
           @else
+          <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{{ route('mediciones.create') }}">Calculadora</a>
+        </li>
           <img style="border-radius: 50px 50px; margin-top:3%; " src={{asset(Auth::user()->image)}} height="36" width="36">
+
           <li class="nav-item dropdown">
             <a style="padding-left:8px;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               {{ Auth::user()->name }} <span class="caret"></span>
@@ -70,6 +74,7 @@
                 {{ __('Logout') }}
               </a>
               <a class="dropdown-item"  href="{{route('user.show', Auth::user()->id)}}">Perfil</a>
+              <a class="dropdown-item"  href="{{route('mediciones.index', Auth::user()->id)}}">Mediciones</a>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
