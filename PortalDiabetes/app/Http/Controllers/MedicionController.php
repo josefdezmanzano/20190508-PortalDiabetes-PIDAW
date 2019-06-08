@@ -186,7 +186,7 @@ class MedicionController extends Controller
         if ($momento = 'N' && $glucose < 200) {
             Session::flash('message', 'Deberias subir ' . $setentaYcincoLenta . ' Unidad/es de insulina lenta');
         } else {
-            Session::flash('message', 'Muy Bien! Tienes un buen control de tu diabetes!');
+            Session::flash('danger', 'Muy Bien! Tienes un buen control de tu diabetes!');
         }
 
 

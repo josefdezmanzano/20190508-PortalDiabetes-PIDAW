@@ -20,7 +20,14 @@
 
   <!-- Custom styles for this template -->
   <link href="css/grayscale.min.css" rel="stylesheet">
-
+<style>
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .margen-responsive {
+   margin-left: 5%;
+  }
+}
+</style>
 </head>
 
 <body id="page-top">

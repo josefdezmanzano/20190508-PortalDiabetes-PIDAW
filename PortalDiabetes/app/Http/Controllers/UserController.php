@@ -9,6 +9,7 @@ use Session;//requerido para usar sesiones
 use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
@@ -20,6 +21,16 @@ class UserController extends Controller
     public function index()
     {
         //
+        Auth::user()->authorizeRoles(['admin']); //esto es para permitir o no a un usuario entrar a una vista
+
+        if (Auth::check()) {
+           // Auth::user()->hasRole('admin')
+           // $usuario = Auth::user()->id;
+            $usuarios = User::orderBy('id', 'DESC', 'name')->paginate(10);
+            return View::make('user.index', compact('usuarios'));
+        } else {
+            return view('auth.login');
+        }
     }
 
     /**
@@ -64,12 +75,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        if((Auth::user()->id == $id) || (Auth::user()->hasRole('admin'))){
         //
-
-
-
         $user = User::find($id);
         return view('user.edit', compact('user'));
+        }else{
+            Auth::user()->authorizeRoles([]);
+        }
+
     }
 
     /**
@@ -81,7 +94,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //4
+        if((Auth::user()->id == $id) || (Auth::user()->hasRole('admin'))){
+
+
         $request->validate(
 
             [
@@ -108,6 +124,10 @@ class UserController extends Controller
         }
         Session::flash('message','Usuario actualizado correctamente.');
         return redirect()->route('user.show',$id);//volvemos ha inicio
+    }else{
+        Auth::user()->authorizeRoles([]); //esto es para permitir o no a un usuario entrar a una vista
+
+    }
     }
 
     /**
@@ -119,5 +139,16 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        if((Auth::user()->id == $id) || (Auth::user()->hasRole('admin'))){
+        $medicionBorrada = Medicion::find($id);
+        $medicionBorrada->delete();
+        //indicamos con un mensaje si todo esta correcto
+        Session::flash('message', 'Medicion borrada correctamente');
+        return redirect()->route('mediciones.index'); //volvemos ha inicio
+        }else{
+        Auth::user()->authorizeRoles([]); //esto es para permitir o no a un usuario entrar a una vista dependiendo de su rol
+
+        }
+
     }
 }

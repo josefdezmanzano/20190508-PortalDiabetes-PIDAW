@@ -13,6 +13,18 @@
 
         </div>
         @endif
+          @if (Auth::user()->hasRole('admin'))
+        <div class="card mb-2">
+                <div class="card-header">
+                    Panel admin
+                </div>
+                <div class="card-body">
+                        <a href="{{route('chart')}}" class="btn btn-warning">Usuarios registrados por mes</a>
+                        <a href="{{route('user.index')}}" class="btn btn-warning">Usuarios registrados</a>
+
+                </div>
+              </div>
+        @endif
         <div class="table-responsive-xl text-center p-3 mb-2">
                 <center><h2>{{$user->name}}</h2></center>
 
@@ -37,7 +49,7 @@
           </table>
 
 
-    <a href="{{route('recomendaciones.index')}}" class="btn btn-info">Volver</a>
+    <a href="{{url()->previous()}}" class="btn btn-info">Volver</a>
     <a  class="btn btn-warning" href="{{route('user.edit', $user)}}">Modificar</a>
 
         </div>
