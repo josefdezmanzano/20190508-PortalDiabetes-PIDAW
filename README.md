@@ -45,8 +45,6 @@ MAIL_ENCRYPTION=tls
     
     php artisan migrate:fresh
     
-    otra vez.
-    
     Con esto debereis de tener el portal totalmente funcional pero sin datos.
     Para usarlo de manera sencilla bastara con poner:
     
@@ -62,6 +60,7 @@ MAIL_ENCRYPTION=tls
     En principio estos serian los permisos a modificar para no tener problemas de permisos:
     
     sudo chgrp -R www-data storage bootstrap/cache
+    
     sudo chmod -R 775 storage bootstrap/cache
     
     
