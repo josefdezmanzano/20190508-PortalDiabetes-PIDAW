@@ -103,41 +103,61 @@ class MedicionController extends Controller
         //Calculo del 75%
         $setentaYcincoLenta = $longActingInsulin * 0.75;
         //********* FIN Calculo de porcentajes de la insulina rapida
-
+        //Variable para saber si hay un mal control
+        $malControl=false;
 
         //Medicion::create($request->all());
 
 
         //Comprobaciones de hipoglucemia
-        if ($momento = 'AD' && $glucose < 75) {
-            Session::flash('message', 'Bajate 1 Unidad/es de insulina lenta');
-        }
-        if ($momento = 'AA' && $glucose < 75) {
-            Session::flash('message', 'No debes llegar tan bajo a las comidas! recuerda que no debes de pasar grandes tiempos sin ingerir alimentos y si llegas bajo de azucar tomate un zumo esperate 15 minutos y pinchate para poder comer');
-        }
-        if ($momento = 'AC' && $glucose < 75) {
-            Session::flash('message', 'No debes llegar tan bajo a las comidas! recuerda que no debes de pasar grandes tiempos sin ingerir alimentos y si llegas bajo de azucar tomate un zumo esperate 15 minutos y pinchate para poder comer');
-        }
-        if ($momento = 'N' && $glucose < 90) {
+        if ($momento == 'AD' && ($glucose > 70 && $glucose < 85)) {
             Session::flash('message', 'Bajate ' . $veinticincoLenta . ' Unidad/es de insulina lenta');
+            $malControl=true;
         }
-        if ($momento = 'N' && $glucose < 75) {
+        if ($momento == 'AD' && $glucose < 70) {
             Session::flash('message', 'Bajate ' . $cincuentaLenta . ' Unidad/es de insulina lenta');
+            $malControl=true;
         }
-        if (($momento = 'DD' || $momento = 'DA' || $momento = 'DC') && ($glucose > 80 && $glucose < 100)) {
+        if ($momento == 'AA' && $glucose < 75) {
+            Session::flash('message', 'No debes llegar tan bajo a las comidas! recuerda que no debes de pasar grandes tiempos sin ingerir alimentos y si llegas bajo de azucar tomate un zumo esperate 15 minutos y pinchate para poder comer');
+            $malControl=true;
+
+        }
+        if ($momento == 'AC' && $glucose < 75) {
+            Session::flash('message', 'No debes llegar tan bajo a las comidas! recuerda que no debes de pasar grandes tiempos sin ingerir alimentos y si llegas bajo de azucar tomate un zumo esperate 15 minutos y pinchate para poder comer');
+            $malControl=true;
+
+        }
+        if ($momento == 'N' && $glucose < 90) {
+            Session::flash('message', 'Bajate ' . $veinticincoLenta . ' Unidad/es de insulina lenta');
+            $malControl=true;
+
+        }
+        if ($momento == 'N' && $glucose < 75) {
+            Session::flash('message', 'Bajate ' . $cincuentaLenta . ' Unidad/es de insulina lenta');
+            $malControl=true;
+
+        }
+        if (($momento == 'DD' || $momento == 'DA' || $momento == 'DC') && ($glucose > 80 && $glucose < 100)) {
 
             Session::flash('message', 'Deberias bajar ' . $veinticincoRapida . ' Unidad/es de insulina rapida');
+            $malControl=true;
+
         }
 
-        if (($momento = 'DD' || $momento = 'DA' || $momento = 'DC') && ($glucose > 70 && $glucose < 80)) {
+        if (($momento == 'DD' || $momento == 'DA' || $momento == 'DC') && ($glucose > 70 && $glucose < 80)) {
 
             Session::flash('message', 'Deberias bajar ' . $cincuentaRapida . ' Unidad/es de insulina rapida');
+            $malControl=true;
+
         }
-        if (($momento = 'DD' || $momento = 'DA' || $momento = 'DC') && ($glucose < 70)) {
+        if (($momento == 'DD' || $momento == 'DA' || $momento == 'DC') && ($glucose < 70)) {
 
             Session::flash('message', 'Deberias bajar ' . $setentaYcincoRapida . ' Unidad/es de insulina rapida');
+            $malControl=true;
+
         }
-        if (($momento = 'DD' || $momento = 'DA' || $momento = 'DC') && ($glucose < 70 && $rations < 2)) {
+        if (($momento == 'DD' || $momento == 'DA' || $momento == 'DC') && ($glucose < 70 && $rations < 2)) {
 
             Session::flash('message', 'Un diabetico suele pincharse entre 2 y 4 unidades para 40g de carbohidratos(4 Raciones),
             si no sabe cuanta insulina deberia de pincharse por comida deberia ir al medico para recibir educacion diabetologica
@@ -145,48 +165,76 @@ class MedicionController extends Controller
             RECUERDA! NUNCA DEBES DEJAR QUE TUS NIVELES DE AZUCAR ESTEN EN MENOS DE 70! SI ESTO PASA TOMA ALIMENTOS DE ACCION RAPIDA
             COMO UN ZUMO/REFRESCO AZUCARADO O EN SU DEFECTO AZUCAR PURO. no sabes que alimentos son de accion rapida y cuales de accion lenta?
             Pulsa aqui: URL ');
+            $malControl=true;
+
         }
 
 
         //Comprobaciones de hiperglucemia
-        if ($momento = 'AD' && $glucose > 150) {
-            Session::flash('message', 'Estas alto de azucar! pinchate y espera 15 minutos antes de comer!');
-        }
-        if ($momento = 'AA' && $glucose > 150) {
-            Session::flash('message', 'Estas alto de azucar! pinchate y espera 15 minutos antes de comer!');
-        }
-        if ($momento = 'AC' && $glucose > 150) {
-            Session::flash('message', 'Estas alto de azucar! pinchate y espera 15 minutos antes de comer!');
-        }
-        if (($momento = 'DD' || $momento = 'DA' || $momento = 'DC') && ($glucose > 180 && $glucose < 200)) {
+        if ($momento == 'AD' && ($glucose > 150 || $glucose < 300)) {
+            Session::flash('danger', 'Estas alto de azucar! pinchate y espera 15 minutos antes de comer!');
 
-            Session::flash('message', 'Deberias subir ' . $veinticincoRapida . ' Unidad/es de insulina rapida');
+            $malControl=true;
         }
-        if (($momento = 'DD' || $momento = 'DA' || $momento = 'DC') && ($glucose > 200 && $glucose < 250)) {
-            Session::flash('message', 'Deberias subir ' . $cincuentaRapida . ' Unidad/es de insulina rapida');
+        if ($momento == 'AA' && ($glucose > 150 || $glucose < 300)) {
+            Session::flash('danger', 'Estas alto de azucar! pinchate y espera 15 minutos antes de comer!');
+            $malControl=true;
+
         }
-        if (($momento = 'DD' || $momento = 'DA' || $momento = 'DC') && ($glucose > 250 && $glucose < 300)) {
-            Session::flash('message', 'Deberias subir ' . $setentaYcincoRapida . ' Unidad/es de insulina rapida');
+        if ($momento == 'AC' && ($glucose > 150 || $glucose < 300)) {
+            Session::flash('danger', 'Estas alto de azucar! pinchate y espera 15 minutos antes de comer!');
+            $malControl=true;
+
         }
-        if (($momento = 'DD' || $momento = 'DA' || $momento = 'DC') && ($glucose > 300 && $glucose < 350)) {
-            Session::flash('message', 'Deberias subir ' . $rapidActingInsulin . ' Unidad/es de insulina rapida');
+        if (($momento == 'DD' || $momento == 'DA' || $momento == 'DC') && ($glucose > 180 && $glucose < 200)) {
+
+            Session::flash('danger', 'Deberias subir ' . $veinticincoRapida . ' Unidad/es de insulina rapida');
+            $malControl=true;
+
         }
-        if (($momento = 'DD' || $momento = 'DA' || $momento = 'DC') && ($glucose > 350)) {
-            Session::flash('message', 'Vuelve a pincharte las mismas unidades! Puede que no te hayas pinchado bien
-                o que la insulina no te haya hecho efecto! Si necesitas ayuda sobre como ponerte insulina visita este enlace: URL
-                Te ha pasado lo mismo en la anterior medicion
+        if (($momento == 'DD' || $momento == 'DA' || $momento == 'DC') && ($glucose > 200 && $glucose < 250)) {
+            Session::flash('danger', 'Deberias subir ' . $cincuentaRapida . ' Unidad/es de insulina rapida');
+            $malControl=true;
+
+        }
+        if (($momento == 'DD' || $momento == 'DA' || $momento == 'DC') && ($glucose > 250 && $glucose < 300)) {
+            Session::flash('danger', 'Deberias subir ' . $setentaYcincoRapida . ' Unidad/es de insulina rapida');
+            $malControl=true;
+
+        }
+        if (($momento == 'DD' || $momento == 'DA' || $momento == 'DC') && ($glucose > 300 && $glucose < 350)) {
+            Session::flash('danger', 'Deberias subir ' . $rapidActingInsulin . ' Unidad/es de insulina rapida');
+            $malControl=true;
+        }
+
+        if (($momento == 'DD' || $momento == 'DA' || $momento == 'DC') && ($glucose > 350)) {
+            Session::flash('danger', 'Vuelve a pincharte las mismas unidades! Puede que no te hayas pinchado bien o que la insulina no te haya hecho efecto! Si necesitas ayuda sobre como ponerte insulina visita este enlace: URL Te ha pasado lo mismo en la anterior medicion
                 ? puede que se te haya puesto mala la insulina, Si quieres saber por que motivos puede ponerse mal la insulina y como prevenirlo visita este enlace: URL. Si sigues estando alto en la siguiente medicion despues de comer visita a un medico');
+                $malControl=true;
+
         }
-        if ($momento = 'N' && $glucose > 130) {
-            Session::flash('message', 'Deberias subir ' . $veinticincoLenta . ' Unidad/es de insulina lenta');
+        if ($momento == 'N' && $glucose > 130) {
+            Session::flash('danger', 'Deberias subir ' . $veinticincoLenta . ' Unidad/es de insulina lenta');
+            $malControl=true;
+
         }
-        if ($momento = 'N' && $glucose < 160) {
-            Session::flash('message', 'Deberias subir ' . $cincuentaLenta . ' Unidad/es de insulina lenta');
+        if ($momento == 'N' && $glucose < 160) {
+            Session::flash('danger', 'Deberias subir ' . $cincuentaLenta . ' Unidad/es de insulina lenta');
+            $malControl=true;
+
         }
-        if ($momento = 'N' && $glucose < 200) {
-            Session::flash('message', 'Deberias subir ' . $setentaYcincoLenta . ' Unidad/es de insulina lenta');
-        } else {
-            Session::flash('danger', 'Muy Bien! Tienes un buen control de tu diabetes!');
+        if ($momento == 'N' && $glucose < 200) {
+            Session::flash('danger', 'Deberias subir ' . $setentaYcincoLenta . ' Unidad/es de insulina lenta');
+            $malControl=true;
+
+        }
+        if($glucose>300 || $glucose>400){
+            Session::flash('danger', 'CUIDADO! si te encuentras bien repite la prueba y si vuelve a salir un valor similar pinchate a poder ser la dosis acordada con tu medico. Si al repetir la prueba da un valor menor a 200 haz que revisen tu glucometro!');
+            $malControl=true;
+
+        }
+       if(!$malControl){
+            Session::flash('message', 'Muy Bien! Tienes un buen control de tu diabetes!');
         }
 
 

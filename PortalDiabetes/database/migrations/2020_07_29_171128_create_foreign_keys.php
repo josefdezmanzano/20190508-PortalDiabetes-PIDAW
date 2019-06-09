@@ -24,19 +24,19 @@ class CreateForeignKeys extends Migration
                         ->onUpdate('cascade');
         });
         Schema::table('medicions', function (Blueprint $table) {
-     
+
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');;
         });
-        Schema::table('recomendacions', function (Blueprint $table) {
-         
-            $table->foreign('medicion_id')
-                ->references('id')->on('medicions')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-        });
+       // Schema::table('recomendacions', function (Blueprint $table) {
+
+        //    $table->foreign('medicion_id')
+         //       ->references('id')->on('medicions')
+          //      ->onDelete('cascade')
+          //      ->onUpdate('cascade');
+        //s});
     }
 
     public function down()
