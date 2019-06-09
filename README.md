@@ -50,9 +50,9 @@ MAIL_ENCRYPTION=tls
     
     php artisan serve
     
-    y si nos dara una direccion parecida a la sigueinte http://localhost:8000 
+    y nos dara una direccion parecida a la sigueinte http://localhost:8000 
     
-    y si vamos al navegador ya deberiamos de tener acceso al foro si estais desde windows.
+    y si vamos al navegador ya deberiamos de tener acceso al foro si estais desde windows(ya que la seguridad es nula).
     
     Si estais desde Linux os dira que no teneis acceso a determinados archivos, sera tan facil como ir dando permisos 775
     a tantos archivos o carpetas como nos pida Laravel.
