@@ -21,7 +21,7 @@ class ChatterCategoryController extends Controller
         //
         if (Auth::check()) {
             //$usuario = Auth::user()->id;
-            $categorias = Category::orderBy('id', 'DESC', 'name')->paginate(10);
+            $categorias = Category::orderBy('id', 'DESC', 'name')->get();
             return View::make('chattercategory.index', compact('categorias'));
         } else {
             return view('auth.login');

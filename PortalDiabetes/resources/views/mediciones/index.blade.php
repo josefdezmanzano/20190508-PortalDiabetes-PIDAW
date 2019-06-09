@@ -17,9 +17,11 @@
   text-align: center;
 }
         </style>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 @endsection
 @section('content')
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css" defer>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js" defer></script>
 <section id="about" class="about-section text-center">
   <div class="container">
     <div class="row">
@@ -41,7 +43,7 @@
 
   <a style=' text-align:right; float:right;' class="btn btn-secondary m-3" href="{{route('chartMediciones')}}">Grafico</a>
 
-    <table class="table table-responsive table-hover">
+    <table id="table_id" class="table table-responsive table-hover" style="width:100%">
         <thead class="thead-dark">
           <tr>
             <th scope="col" class="align-middle">Usuario</th>
@@ -62,7 +64,7 @@
           <tr>
             <th scope="row" class="align-middle">{{$medicion->users->name}}</th>
             @if ($medicion->glucose > 180)
-            <td class="p-3 mb-2 bg-danger text-white align-middle">{{$medicion->glucose}}</td>
+            <td class="align-middle">{{$medicion->glucose}} <img style="margin-bottom:3%;" src="{{asset('img/warning.png')}}"></td>
             @else
             <td class="align-middle">{{$medicion->glucose}}</td>
             @endif
@@ -77,9 +79,9 @@
 <div class="grid-item"> <a  class="btn btn-warning" href="{{route('mediciones.edit', $medicion)}}"><i class="material-icons">
         edit
         </i></a></div>
-<div class="grid-item">  <a href="{{route('mediciones.show', $medicion->id)}}" class="btn btn-info"><i class="material-icons">
+<!--<div class="grid-item">  <a href="{{route('mediciones.show', $medicion->id)}}" class="btn btn-info"><i class="material-icons">
         description
-        </i></a></div>
+        </i></a></div>-->
 <div class="grid-item"> <form action="{{ route('mediciones.destroy',$medicion->id)}}" method="POST">
         @csrf
         @method('DELETE')
@@ -88,22 +90,21 @@
             </i></button>
     </form></div>
 </div>
-
-
-
-
-
             </td>
-
-
         </tr>
         @endforeach
-        {{ $mediciones->links() }}
         </tbody>
       </table>
 
       <a href="{{url()->previous()}}" class="btn btn-info" style="float:left;">Volver</a>
 <br>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js" defer></script>
+<script>
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
+</script>
 
 
   </div>

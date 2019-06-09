@@ -205,7 +205,7 @@ Signup Section -->
               <i class="fas fa-coffee text-primary mb-2"></i>
               <h4 class="text-uppercase m-0">Telegram</h4>
               <hr class="my-4">
-              <div class="small text-black-50">JoseFdez</div>
+              <div class="small text-black-50"><a href="https://t.me/JoseFernandezManzano">@JoseFernandezManzano</a></div>
             </div>
           </div>
         </div>
@@ -229,7 +229,7 @@ Signup Section -->
               <i class="fas fa-mobile-alt text-primary mb-2"></i>
               <h4 class="text-uppercase m-0">Tlfn Movil</h4>
               <hr class="my-4">
-              <div class="small text-black-50">+34 652 49 90 52</div>
+              <div class="small text-black-50"><a href="tel:+34652499052">+34 652 49 90 52</a></div>
             </div>
           </div>
         </div>

@@ -15,6 +15,7 @@
   text-align: center;
 }
         </style>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 @endsection
 @section('content')
 
@@ -28,11 +29,11 @@
       </div>
     </div>
 
-    <center><h1 style="text-align: center;font-family: 'Staatliches', cursive;">Tus mediciones</h1></center>
+    <center><h1 style="text-align: center;font-family: 'Staatliches', cursive;">Categorias</h1></center>
 
 <br/>
 
-    <table class="table table-responsive table-hover">
+    <table id='table_id' class="table table-responsive table-hover">
         <thead class="thead-dark">
           <tr>
             <th scope="col" class="align-middle">ID</th>
@@ -80,7 +81,12 @@
 
         </tr>
         @endforeach
-        {{ $categorias->links() }}
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js" defer></script>
+        <script>
+        $(document).ready( function () {
+            $('#table_id').DataTable();
+        } );
+        </script>
         </tbody>
       </table>
       <a href="{{url()->previous()}}" class="btn btn-info" style="float:left;">Volver</a>

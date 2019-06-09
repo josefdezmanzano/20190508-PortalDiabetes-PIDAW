@@ -23,7 +23,7 @@ class MedicionController extends Controller
         if (Auth::check()) {
             $usuario = Auth::user()->id;
             $mediciones = Medicion::with('users')->where('user_id', $usuario)
-                ->orderBy('id', 'DESC', 'users_id')->paginate(10);
+                ->orderBy('id', 'DESC', 'users_id')->get();
             return View::make('mediciones.index', compact('mediciones'));
         } else {
             return view('auth.login');
